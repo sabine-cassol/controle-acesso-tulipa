@@ -18,32 +18,44 @@ window.addEventListener("load", () => {
 });
 
 /* ==============================
-   Função global para o botão HTML
+   Função global chamada pelo HTML
 ================================ */
 window.salvarVisitante = async function () {
   try {
-    // 📌 Campos do visitante
+    // 📌 Dados do visitante
     const nome = document.getElementById("nome").value.trim();
     const nascimento = document.getElementById("nascimento").value;
     const cpf = document.getElementById("cpf").value.trim();
     const casa = document.getElementById("casa").value.trim();
 
-    // 🚗 Dados do veículo
+    // 🚗 Dados do veículo (OBRIGATÓRIOS)
     const tipoVeiculo = document.getElementById("tipoVeiculo").value;
     const marcaModelo = document.getElementById("marcaModelo").value.trim();
     const corVeiculo = document.getElementById("corVeiculo").value.trim();
     const placaVeiculo = document.getElementById("placaVeiculo").value.trim();
 
-    // ✅ Validação básica
+    /* ==============================
+       Validações
+    ================================ */
     if (!nome || !cpf || !casa) {
-      alert("Preencha os campos obrigatórios (Nome, CPF e Casa)");
+      alert("Preencha Nome, CPF e Casa de destino.");
+      return;
+    }
+
+    if (
+      !tipoVeiculo ||
+      !marcaModelo ||
+      !corVeiculo ||
+      !placaVeiculo
+    ) {
+      alert("Todos os dados do veículo são obrigatórios.");
       return;
     }
 
     // 🔐 Usuário autenticado
     const user = auth.currentUser;
     if (!user) {
-      alert("Usuário não autenticado");
+      alert("Usuário não autenticado.");
       return;
     }
 
@@ -60,7 +72,9 @@ window.salvarVisitante = async function () {
       cadastradoPorCPF = dados.cpf || "";
     }
 
-    // 💾 Salva visitante no Firestore
+    /* ==============================
+       Salva visitante
+    ================================ */
     await addDoc(collection(db, "visitantes"), {
       nome,
       nascimento,
@@ -77,7 +91,9 @@ window.salvarVisitante = async function () {
 
     alert("✅ Visitante cadastrado com sucesso!");
 
-    // 🧹 Limpa formulário
+    /* ==============================
+       Limpa formulário
+    ================================ */
     document.getElementById("nome").value = "";
     document.getElementById("nascimento").value = "";
     document.getElementById("cpf").value = "";
@@ -87,7 +103,7 @@ window.salvarVisitante = async function () {
     document.getElementById("corVeiculo").value = "";
     document.getElementById("placaVeiculo").value = "";
 
-    // ⏱ Atualiza horário novamente
+    // Atualiza horário novamente
     document.getElementById("entrada").value =
       new Date().toISOString().slice(0, 16);
 
