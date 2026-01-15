@@ -1,6 +1,11 @@
-import { collection, addDoc, Timestamp, doc, getDoc } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Preenche data/hora automaticamente ao abrir a página
 window.addEventListener("load", () => {
@@ -70,5 +75,6 @@ window.salvarVisitante = async function () {
     alert("Erro ao cadastrar visitante");
   }
 };
+
 
 
