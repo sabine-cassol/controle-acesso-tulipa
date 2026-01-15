@@ -1,6 +1,6 @@
 import { auth } from "./firebase.js";
 import { signInWithEmailAndPassword } from
-"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 document.getElementById("btnLogin")?.addEventListener("click", login);
 
@@ -13,7 +13,6 @@ function login() {
     return;
   }
 
-  // Converte CPF em email padrão do sistema
   const email = cpf + "@condominio.com";
 
   signInWithEmailAndPassword(auth, email, senha)
@@ -21,6 +20,8 @@ function login() {
       window.location.href = "home.html";
     })
     .catch(error => {
-      alert("Erro ao fazer login: " + error.message);
+      console.error(error);
+      alert("Erro ao fazer login");
     });
 }
+
