@@ -13,7 +13,7 @@ function login() {
     return;
   }
 
-  const email = cpf + "@condominio.com";
+  const email = cpf + "@tulipa.com";
 
   signInWithEmailAndPassword(auth, email, senha)
     .then(() => {
@@ -24,4 +24,5 @@ function login() {
       alert("Erro ao fazer login");
     });
 }
+
 
