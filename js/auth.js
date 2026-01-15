@@ -5,13 +5,16 @@ import { signInWithEmailAndPassword } from
 document.getElementById("btnLogin")?.addEventListener("click", login);
 
 function login() {
-  const email = document.getElementById("email").value;
+  const cpf = document.getElementById("cpf").value;
   const senha = document.getElementById("senha").value;
 
-  if (!email || !senha) {
-    alert("Preencha email e senha");
+  if (!cpf || !senha) {
+    alert("Preencha CPF e senha");
     return;
   }
+
+  // Converte CPF em email padrão do sistema
+  const email = cpf + "@condominio.com";
 
   signInWithEmailAndPassword(auth, email, senha)
     .then(() => {
