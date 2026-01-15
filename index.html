@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Condomínio Tulipa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="cabecalho">
+  <div class="cabecalho-esquerda">
+    <img src="assets/logo.png" alt="Logo do Condomínio" class="logo">
+    <h1>Condomínio Tulipa - Controle de Acessos - Portaria</h1>
+  </div>
+
+  <nav class="menu">
+    <a href="home.html">Início</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="usuarios.html" id="menuUsuarios">Usuários</a>
+    <a href="#" onclick="logout()">Sair</a>
+  </nav>
+</header>
+
+
+<main class="login-container">
+  <h2>Acesso ao Sistema</h2>
+
+  <input type="text" id="cpf" placeholder="CPF">
+  <input type="password" id="senha" placeholder="Senha">
+<button class="btn-form" onclick="login()">
+  Entrar
+</button>
+
+</main>
+
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

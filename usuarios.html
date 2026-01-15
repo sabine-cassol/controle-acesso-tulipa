@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestão de Usuários</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="cabecalho">
+  <div class="conteudo">
+    <img src="assets/logo.png" alt="Logo do Condomínio" class="logo">
+    <h1>Condomínio Tulipa - Controle de Acessos - Portaria</h1>
+  </div>
+
+  <nav class="menu">
+    <a href="home.html">Início</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="usuarios.html" id="menuUsuarios">Usuários</a>
+    <a href="#" onclick="logout()">Sair</a>
+  </nav>
+</header>
+
+<main class="conteudo">
+
+  <h2>Usuários do Sistema</h2>
+
+  <!-- Formulário de cadastro -->
+  <form class="form-usuarios" onsubmit="return false;">
+    <input id="nome" placeholder="Nome completo">
+    <input id="cpf" placeholder="CPF">
+    <input id="funcao" placeholder="Função">
+    <input id="senha" type="password" placeholder="Senha inicial">
+
+<button class="btn-form" type="button" onclick="criarUsuario()">
+  Criar usuário
+</button>
+
+  </form>
+
+  <hr>
+
+  <!-- Lista de usuários -->
+  <ul id="listaUsuarios"></ul>
+
+</main>
+
+<!-- Firebase -->
+<script type="module" src="js/firebase.js"></script>
+
+<!-- Controle de permissões (admin) -->
+<script type="module" src="js/permissoes.js"></script>
+
+<!-- Lógica da página -->
+<script type="module" src="js/usuarios.js"></script>
+
+<!-- Logout -->
+<script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

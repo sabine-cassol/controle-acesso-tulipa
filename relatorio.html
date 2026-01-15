@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Visitantes</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<header class="cabecalho">
+  <div class="cabecalho-esquerda">
+    <img src="assets/logo.png" alt="Logo do Condomínio" class="logo">
+    <h1>Condomínio Tulipa - Controle de Acessos - Portaria</h1>
+  </div>
+
+  <nav class="menu">
+    <a href="home.html">Início</a>
+    <a href="relatorio.html">Relatórios</a>
+    <a href="usuarios.html" id="menuUsuarios">Usuários</a>
+    <a href="#" onclick="logout()">Sair</a>
+  </nav>
+</header>
+
+<div class="conteudo">
+  <h2>Relatório de Visitantes</h2>
+
+  <button class="btn-excel" onclick="exportarExcel()">
+    Exportar para Excel
+  </button>
+
+  <table id="tabelaVisitantes">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Nascimento</th>
+        <th>Casa</th>
+        <th>Entrada</th>
+        <th>Cadastrado por</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- Biblioteca Excel -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<!-- Firebase -->
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/permissoes.js"></script>
+<script type="module" src="js/relatorio.js"></script>
+
+</body>
+</html>
