@@ -11,16 +11,24 @@ import {
 window.addEventListener("load", () => {
   const entrada = document.getElementById("entrada");
   const agora = new Date();
-  entrada.value = agora.toISOString().slice(0,16);
+  entrada.value = agora.toISOString().slice(0, 16);
 });
 
 window.salvarVisitante = async function () {
   try {
-    const nome = document.getElementById("nome").value;
-    const nascimento = document.getElementById("nascimento").value;
-    const cpf = document.getElementById("cpf").value;
-    const casa = document.getElementById("casa").value;
+    // 🔹 DADOS DO VISITANTE
+    const nome = document.getElementById("nome").value.trim();
+    const nascimento = document.getElementById("nascimento").value || null;
+    const cpf = document.getElementById("cpf").value.trim();
+    const casa = document.getElementById("casa").value.trim();
 
+    // 🔹 DADOS DO VEÍCULO (NOVOS)
+    const tipoVeiculo = document.getElementById("tipoVeiculo").value || "Não informado";
+    const marcaModelo = document.getElementById("marcaModelo").value.trim() || "Não informado";
+    const corVeiculo = document.getElementById("corVeiculo").value.trim() || "Não informado";
+    const placaVeiculo = document.getElementById("placaVeiculo").value.trim() || "Não informado";
+
+    // Validação mínima
     if (!nome || !cpf || !casa) {
       alert("Preencha os campos obrigatórios");
       return;
@@ -47,34 +55,45 @@ window.salvarVisitante = async function () {
       cadastradoPorCPF = dados.cpf || "";
     }
 
-    // 💾 Salva visitante
+    // 💾 Salva visitante no Firestore
     await addDoc(collection(db, "visitantes"), {
       nome,
       nascimento,
       cpf,
       casa,
-      entrada: Timestamp.now(), // data/hora oficial do servidor
+
+      // Veículo
+      tipoVeiculo,
+      marcaModelo,
+      corVeiculo,
+      placaVeiculo,
+
+      // Controle
+      entrada: Timestamp.now(),
       cadastradoPorNome,
-      cadastradoPorCPF
+      cadastradoPorCPF,
+      cadastradoPorUid: user.uid
     });
 
     alert("Visitante cadastrado com sucesso!");
 
-    // Limpa formulário
+    // 🔄 Limpa formulário
     document.getElementById("nome").value = "";
     document.getElementById("nascimento").value = "";
     document.getElementById("cpf").value = "";
     document.getElementById("casa").value = "";
 
+    document.getElementById("tipoVeiculo").value = "";
+    document.getElementById("marcaModelo").value = "";
+    document.getElementById("corVeiculo").value = "";
+    document.getElementById("placaVeiculo").value = "";
+
     // Atualiza hora novamente
     document.getElementById("entrada").value =
-      new Date().toISOString().slice(0,16);
+      new Date().toISOString().slice(0, 16);
 
   } catch (error) {
     console.error(error);
     alert("Erro ao cadastrar visitante");
   }
 };
-
-
-
