@@ -17,7 +17,7 @@ window.criarUsuario = async function () {
     return;
   }
 
-  const email = cpf + "@condominio.com";
+  const email = cpf + "@tulipa.com";
 
   const cred = await createUserWithEmailAndPassword(auth, email, senha);
 
@@ -31,4 +31,5 @@ window.criarUsuario = async function () {
 
   alert("Usuário criado!");
 };
+
 
